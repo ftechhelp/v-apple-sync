@@ -1,6 +1,6 @@
 {
 	"name": "apple_sync",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"private": true,
 	"description": "One-way sync of iCloud Photos, Drive, Contacts, Calendars and Reminders into Nextcloud",
 	"license": "AGPL-3.0-or-later",

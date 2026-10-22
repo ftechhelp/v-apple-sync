@@ -11,7 +11,7 @@
 		</NcSettingsSection>
 
 		<NcSettingsSection :name="t('apple_sync', 'What to sync')"
-			:description="t('apple_sync', 'Turned-on services sync by themselves every 15 minutes (contacts, calendars) or every hour (photos, iCloud Drive). Changes made in Nextcloud to synced items are overwritten by the iCloud version.')">
+			:description="t('apple_sync', 'Turned-on services sync by themselves every 5 minutes. Changes made in Nextcloud to synced items are overwritten by the iCloud version.')">
 			<SyncServices v-model:sync="sync" :account="account" />
 		</NcSettingsSection>
 	</div>

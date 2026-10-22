@@ -8,7 +8,9 @@
 				{{ t('apple_sync', '“Sync now” works anyway while this page is open.') }}
 			</p>
 			<p class="sync-services__detail">
-				{{ t('apple_sync', 'For automatic syncing, an administrator sets Background jobs to “Cron” in Administration settings → Basic settings and runs cron.php every 5 minutes.') }}
+				{{ sync.cron.mode === 'cron'
+					? t('apple_sync', 'Background jobs are set to “Cron”, but cron.php has not finished a run lately. A slow job from another app can hold it up; an administrator can give Apple iCloud its own cron run, as the app’s README describes.')
+					: t('apple_sync', 'For automatic syncing, an administrator sets Background jobs to “Cron” in Administration settings → Basic settings and runs cron.php every 5 minutes.') }}
 			</p>
 		</NcNoteCard>
 

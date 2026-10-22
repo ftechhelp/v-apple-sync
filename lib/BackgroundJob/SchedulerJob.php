@@ -15,10 +15,17 @@ use OCP\BackgroundJob\IJobList;
 use OCP\BackgroundJob\TimedJob;
 
 /**
- * Every 5 minutes: queue a SyncJob for each enabled service that is due and
- * whose credentials are connected.
+ * On every cron tick (5 minutes): queue a SyncJob for each enabled service
+ * that is due and whose credentials are connected.
  */
 class SchedulerJob extends TimedJob {
+	/**
+	 * Services due this many seconds from now are queued already. Runs start
+	 * a little after the tick that queued them, so without this a 5-minute
+	 * interval would land just after the next tick and sync every 10 minutes.
+	 */
+	public const LOOKAHEAD = 120;
+
 	public function __construct(
 		ITimeFactory $time,
 		private SyncStateMapper $states,
@@ -27,14 +34,15 @@ class SchedulerJob extends TimedJob {
 		private IJobList $jobList,
 	) {
 		parent::__construct($time);
-		$this->setInterval(300);
+		// Shorter than the cron period, so tick-to-tick jitter never skips a tick.
+		$this->setInterval(60);
 		$this->setTimeSensitivity(IJob::TIME_SENSITIVE);
 	}
 
 	protected function run($argument): void {
 		$now = $this->time->getTime();
 		$accounts = [];
-		foreach ($this->states->findDue($now) as $state) {
+		foreach ($this->states->findDue($now + self::LOOKAHEAD) as $state) {
 			if (!in_array($state->getService(), SyncState::AVAILABLE_SERVICES, true) || $state->getLockedUntil() > $now) {
 				continue;
 			}

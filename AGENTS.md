@@ -25,10 +25,11 @@ Guidance for coding agents working in this repository.
 | 3. Drive sync, reauth/sync-failed notifications | ✅ v0.3.0, same |
 | 4. Photos (CloudKit) | ✅ v0.3.0, same. Live Photos get their `.MOV`; Shared Library zones are not read yet (phase 6) |
 | "What to sync" UI (per service: on/off, folder, mirror deletions, Sync now, Check everything again, status) | ✅ v0.3.0 |
+| Background sync of every service every 5 minutes | ✅ v0.4.0, checked over two real cron ticks on the e2e stack, and on production against the real iCloud (2026-10-21, ticks at 18:25 and 18:30) |
 | 5. Reminders (CloudKit + protobuf) | ⏳ next |
 | 6. ADP (`requestPCS`), Shared Library, albums | ⏳ |
-| Tests | ✅ 51 PHPUnit tests: SRP vectors, sign-in flows, and the four sync engines against `tests/Support/FakeICloud.php` with in-memory Nextcloud stores. ✅ 4 Playwright tests (`make e2e`): the connect flow, and a full sync of all four services into a real Nextcloud (SQLite) from the same FakeICloud. The sync spec also passed on MariaDB 11.4 (throwaway stack, packaged app) |
-| Production install | ✅ v0.3.0 on the owner's Nextcloud (35.0.2, MariaDB 11.4), 2026-10-20. Earlier: 0.1.0 and 0.2.0 the same day |
+| Tests | ✅ 55 PHPUnit tests: SRP vectors, sign-in flows, scheduling (`SchedulerJob`, `SyncRunner`), and the four sync engines against `tests/Support/FakeICloud.php` with in-memory Nextcloud stores. ✅ 4 Playwright tests (`make e2e`): the connect flow, and a full sync of all four services into a real Nextcloud (SQLite) from the same FakeICloud. The sync spec also passed on MariaDB 11.4 (throwaway stack, packaged app) |
+| Production install | ✅ v0.4.0 on the owner's Nextcloud (35.0.2, MariaDB 11.4), 2026-10-21, syncing in the background through `apple-sync-cron.timer`. Earlier: 0.1.0–0.3.0 on 2026-10-20 |
 
 ## Production
 
@@ -44,7 +45,10 @@ Another of the owner's apps, `vpass` (from `/HDD/development/V-Pass`), is instal
 - **Never ship** a change that fails its tests or wasn't tried on the dev stack.
 - **Scope:** touch only the `apple_sync` app. Anything else on production (other apps, config, containers) needs the owner's explicit permission.
 - **Viewer apps:** with 0.3.0 the owner approved enabling the apps the synced data shows up in ("enable as needed", 2026-10-20). Contacts (updated 8.4.4 → 8.9.1, the old one only supported NC ≤ 33), Calendar (6.2.2 → 6.6.2) and Photos are now enabled. Tasks is not installed yet: install it when Reminders ship. Mail and Talk stay disabled. Synced data is stored through Nextcloud's built-in DAV and files either way.
-- **Background jobs on production do not run.** Mode is `webcron` and the last run was 2026-10-14, so `SchedulerJob` never fires and nothing syncs by itself. The settings page warns about it, and "Sync now" works without cron. Setting up system cron is outside the app's scope, so ask the owner before changing it.
+- **Background jobs on production** run from two host systemd timers. Both fire every 5 minutes and run `cron.php` through `docker exec`.
+  - `murphy-nextcloud-cron.timer` runs all of Nextcloud's jobs, with background jobs in `cron` mode. It doesn't belong to this project; it appeared on 2026-10-21. Each of its runs spends 80+ minutes in `files_antivirus`'s `BackgroundScanner` (ClamAV at 100% CPU), and because it is a oneshot unit, it skips ticks until the run ends.
+  - `apple-sync-cron.timer` and `.service` in `/etc/systemd/system/` (added with the owner's OK, 2026-10-21) run only `SchedulerJob` and `SyncJob`, through `cron.php -- <job classes>`. That way other apps' slow jobs can't hold up syncing. It also updates `lastcron`, so Nextcloud's "last job execution" looks fresh even while the main run is stuck.
+  - Undo with `sudo systemctl disable --now apple-sync-cron.timer`. Leave the murphy timer and the antivirus app alone: changing either needs the owner's permission.
 
 **Procedure:** `make deploy-prod` runs `scripts/deploy-prod.sh`. It does these steps in order and stops at the first failure:
 1. **Preflight.** `occ status` must show no maintenance mode and no pending `needsDbUpgrade`; `occ upgrade` would apply anything pending. The version in `appinfo/info.xml` must be higher than the installed one. Nextcloud never downgrades an app, so never reuse or lower a version.
@@ -119,7 +123,9 @@ make deploy-prod            # install/update on production (see above)
   - `Engine/ContactsSync`, `Engine/CalendarsSync`, `Engine/DriveSync` and `Engine/PhotosSync` all resume from a JSON cursor in `apple_sync_state.sync_cursor`. `Engine/FileMirror` handles a file's download, move and adoption for Drive and Photos.
   - `Store/`: interfaces with Nextcloud implementations (`NcContactsStore`/`NcCalendarStore` on the internal `OCA\DAV` backends, `NcFileStore` on `IRootFolder`). The tests swap in memory versions.
   - **Behaviour:** iCloud always wins over local edits. Deletions in iCloud are kept in Nextcloud unless the user turns on "mirror deletions" for that service, which moves them to the NC trash bin. iCloud contact groups become CATEGORIES on the member cards.
-- **`lib/BackgroundJob/`**: `SchedulerJob` (every 5 minutes) queues a `SyncJob` for each due service. `SyncJob` runs with 240 s / 1 GB and requeues itself until finished. Intervals: DAV 15 min, Drive and Photos 1 h.
+- **`lib/BackgroundJob/`**: `SchedulerJob` queues a `SyncJob` for each due service. `SyncJob` runs with 240 s / 1 GB and requeues itself until finished.
+  - Every service syncs every 5 minutes (`SyncState::INTERVALS`), once per cron tick.
+  - Three details keep it at 5 minutes and not 10. The scheduler's own interval is 60 s, because `TimedJob` needs strictly more than its interval since the last run, and cron jitter would skip ticks. It queues what is due within `SchedulerJob::LOOKAHEAD` (120 s). And `next_run_at` counts from the start of a run, not its end.
 - **`lib/Controller/SyncController.php`**: the "What to sync" API, `/api/sync`, `/api/sync/{service}` (settings, run, reset) and `/api/dav` (app-specific password). "Sync now" runs inline for up to 20 s / 300 MB per request, and the page keeps calling it while the answer is `partial`, so syncing works without cron.
 - **`lib/Notification/Notifier.php`**: notifications for re-sign-in needed, app-specific password rejected, and repeated sync failures. They link to the settings page.
 - **`lib/Command/`**: `occ` commands, kept for admins and debugging.

@@ -26,8 +26,11 @@ class SyncService {
 		SyncState::SERVICE_PHOTOS => 'photos',
 	];
 
-	/** Background jobs count as stalled when cron has not run for this long. */
-	private const CRON_STALE_AFTER = 3600;
+	/**
+	 * Background jobs count as stalled when cron has not finished a run for
+	 * this long: services sync every 5 minutes, and one cron run can last 14.
+	 */
+	private const CRON_STALE_AFTER = 20 * 60;
 
 	public function __construct(
 		private SyncStateMapper $states,

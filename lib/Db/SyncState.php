@@ -71,13 +71,13 @@ class SyncState extends Entity {
 		self::SERVICE_PHOTOS,
 	];
 
-	/** Seconds between successful syncs. */
+	/** Seconds between the starts of successful syncs: every cron tick (5 minutes). */
 	public const INTERVALS = [
-		self::SERVICE_CONTACTS => 15 * 60,
-		self::SERVICE_CALENDARS => 15 * 60,
-		self::SERVICE_DRIVE => 60 * 60,
-		self::SERVICE_PHOTOS => 60 * 60,
-		self::SERVICE_REMINDERS => 15 * 60,
+		self::SERVICE_CONTACTS => 5 * 60,
+		self::SERVICE_CALENDARS => 5 * 60,
+		self::SERVICE_DRIVE => 5 * 60,
+		self::SERVICE_PHOTOS => 5 * 60,
+		self::SERVICE_REMINDERS => 5 * 60,
 	];
 
 	/** Default target folder for file-based services. */

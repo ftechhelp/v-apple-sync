@@ -10,7 +10,7 @@
 - **Photos**, **iCloud Drive** and **Reminders** via the iCloud web API (Apple ID password + two-factor authentication)
 
 Sync is one-way: nothing is ever written back to iCloud.]]></description>
-	<version>0.3.0</version>
+	<version>0.4.0</version>
 	<licence>agpl</licence>
 	<author mail="ftechhelp@gmail.com">Vincent</author>
 	<namespace>AppleSync</namespace>

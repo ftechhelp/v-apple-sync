@@ -21,7 +21,13 @@ One-way sync of iCloud data into Nextcloud 34/35. Nothing is ever written back t
 
 ## How syncing works
 
-Everything is set up under **Personal settings → Apple iCloud → What to sync**. Turning a service on syncs it right away. After that, Nextcloud's background jobs keep it up to date (contacts and calendars every 15 minutes, Drive and Photos hourly), so the server needs working [cron](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/background_jobs_configuration.html). "Sync now" works without cron.
+Everything is set up under **Personal settings → Apple iCloud → What to sync**. Turning a service on syncs it right away. After that, Nextcloud's background jobs sync every turned-on service every 5 minutes, so the server needs [cron](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/background_jobs_configuration.html) running `cron.php` every 5 minutes. "Sync now" works without cron.
+
+Nextcloud runs background jobs one at a time, so a slow job from another app (an antivirus scan, for example) delays syncing until it finishes. To keep syncing on schedule regardless, an administrator can run the app's jobs in a cron run of their own, every 5 minutes, next to the regular one:
+
+```sh
+php -f /var/www/html/cron.php -- 'OCA\AppleSync\BackgroundJob\SchedulerJob' 'OCA\AppleSync\BackgroundJob\SyncJob'
+```
 
 - iCloud always wins: edits made in Nextcloud to synced items are overwritten on the next change in iCloud. File versions keep the history.
 - Items deleted in iCloud are **kept** in Nextcloud, unless "Also delete in Nextcloud what is deleted in iCloud" is on for that service.

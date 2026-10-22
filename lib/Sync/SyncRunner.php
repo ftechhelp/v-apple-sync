@@ -80,7 +80,7 @@ class SyncRunner {
 				}
 			});
 
-			$outcome = $this->runEngine($context);
+			$outcome = $this->runEngine($context, $now);
 			$this->states->update($state);
 			return $outcome;
 		} finally {
@@ -88,7 +88,7 @@ class SyncRunner {
 		}
 	}
 
-	private function runEngine(SyncContext $context): RunOutcome {
+	private function runEngine(SyncContext $context, int $startedAt): RunOutcome {
 		$state = $context->state;
 		$userId = $context->userId;
 		$service = $state->getService();
@@ -132,7 +132,8 @@ class SyncRunner {
 		}
 		$state->setStatus(SyncState::STATUS_IDLE);
 		$state->setLastSuccessAt($now);
-		$state->setNextRunAt($now + (SyncState::INTERVALS[$service] ?? 3600));
+		// From the start, so a run's length does not push the next one past a cron tick.
+		$state->setNextRunAt($startedAt + (SyncState::INTERVALS[$service] ?? 3600));
 		$state->setLastError($warning);
 		return RunOutcome::Finished;
 	}
