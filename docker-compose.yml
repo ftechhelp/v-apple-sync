@@ -14,7 +14,8 @@ services:
       - db:/var/lib/postgresql/data
 
   app:
-    image: nextcloud:35-apache
+    # PHP 8.5.12 fixes CVE-2026-109618 / CVE-2026-109619; match cron below.
+    image: nextcloud:35.0.2-apache@sha256:3f05f4d5eded9d3d029e617926500645cca6344710364737a374088f6811095a
     restart: unless-stopped
     ports:
       - "127.0.0.1:8089:80"
@@ -33,7 +34,7 @@ services:
       - db
 
   cron:
-    image: nextcloud:35-apache
+    image: nextcloud:35.0.2-apache@sha256:3f05f4d5eded9d3d029e617926500645cca6344710364737a374088f6811095a
     restart: unless-stopped
     entrypoint: /cron.sh
     volumes:

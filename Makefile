@@ -34,6 +34,10 @@ js:
 	npm ci --no-audit --no-fund
 	npm run build
 
+.PHONY: test-runtime
+test-runtime:   ## require patched PHP in both the running web and cron containers
+	sh scripts/check-php-runtime.sh
+
 test:
 	$(PHP) vendor/bin/phpunit
 

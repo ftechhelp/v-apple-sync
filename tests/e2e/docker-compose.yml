@@ -3,7 +3,8 @@
 name: apple-sync-e2e
 services:
   nextcloud:
-    image: nextcloud:35-apache
+    # Same patched PHP runtime as the development web and cron services.
+    image: nextcloud:35.0.2-apache@sha256:3f05f4d5eded9d3d029e617926500645cca6344710364737a374088f6811095a
     ports:
       - "127.0.0.1:8091:80"
     environment:
@@ -15,7 +16,7 @@ services:
       - ../..:/var/www/html/custom_apps/apple_sync:ro
 
   fake-apple:
-    image: nextcloud:35-apache
+    image: nextcloud:35.0.2-apache@sha256:3f05f4d5eded9d3d029e617926500645cca6344710364737a374088f6811095a
     entrypoint: ["php", "-S", "0.0.0.0:8000", "/fake/fake-apple.php"]
     ports:
       - "127.0.0.1:8092:8000"

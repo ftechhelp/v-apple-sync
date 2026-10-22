@@ -48,6 +48,18 @@ make login USER_ID=admin   # interactive iCloud sign-in
 make status    # show accounts and verify the iCloud session
 ```
 
+### PHP runtime security
+
+The development web/cron and throwaway test services use the same pinned
+Nextcloud 35.0.2 Apache image with **PHP 8.5.12**, fixing
+[CVE-2026-109618 and CVE-2026-109619](https://www.php.net/archive/2026.php#2026-10-21-5).
+A current Nextcloud application version alone does not prove its bundled PHP is patched.
+When advancing the digest, test the candidate PHP first and preserve the existing
+database and Nextcloud volume. Recreate **both** `app` and `cron`, not just the web
+service, then run `make test-runtime`. Pulling alone does not replace a running
+container. Keep the e2e images in sync; never delete volumes as an update shortcut.
+This is an environment update, not an app-version bump or production app deployment.
+
 The SRP implementation is checked against vectors generated with
 [pysrp](https://pypi.org/project/srp/) configured as pyicloud uses it
 (`make srp-vectors` regenerates them).
