@@ -1,0 +1,24 @@
+# Throwaway stack for the browser tests: Nextcloud 35 (SQLite) with this repo
+# mounted as the app, plus a fake Apple server. Started by tests/e2e/setup.sh.
+name: apple-sync-e2e
+services:
+  nextcloud:
+    image: nextcloud:35-apache
+    ports:
+      - "127.0.0.1:8091:80"
+    environment:
+      SQLITE_DATABASE: nextcloud
+      NEXTCLOUD_ADMIN_USER: admin
+      NEXTCLOUD_ADMIN_PASSWORD: admin-e2e-pass
+      NEXTCLOUD_TRUSTED_DOMAINS: localhost
+    volumes:
+      - ../..:/var/www/html/custom_apps/apple_sync:ro
+
+  fake-apple:
+    image: nextcloud:35-apache
+    entrypoint: ["php", "-S", "0.0.0.0:8000", "/fake/fake-apple.php"]
+    ports:
+      - "127.0.0.1:8092:8000"
+    volumes:
+      - ./fake-apple.php:/fake/fake-apple.php:ro
+      - ../Support/FakeICloud.php:/fake/FakeICloud.php:ro

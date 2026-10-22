@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+	<id>apple_sync</id>
+	<name>Apple iCloud Sync</name>
+	<summary>One-way sync of iCloud Photos, Drive, Contacts, Calendars and Reminders into Nextcloud</summary>
+	<description><![CDATA[Mirrors your Apple iCloud data into Nextcloud:
+
+- **Contacts** and **Calendars** via Apple's CardDAV/CalDAV (app-specific password)
+- **Photos**, **iCloud Drive** and **Reminders** via the iCloud web API (Apple ID password + two-factor authentication)
+
+Sync is one-way: nothing is ever written back to iCloud.]]></description>
+	<version>0.3.0</version>
+	<licence>agpl</licence>
+	<author mail="ftechhelp@gmail.com">Vincent</author>
+	<namespace>AppleSync</namespace>
+	<category>integration</category>
+	<dependencies>
+		<php min-version="8.3"/>
+		<lib>gmp</lib>
+		<nextcloud min-version="34" max-version="35"/>
+	</dependencies>
+	<background-jobs>
+		<job>OCA\AppleSync\BackgroundJob\SchedulerJob</job>
+	</background-jobs>
+	<commands>
+		<command>OCA\AppleSync\Command\Login</command>
+		<command>OCA\AppleSync\Command\Status</command>
+		<command>OCA\AppleSync\Command\Sync</command>
+	</commands>
+	<settings>
+		<personal>OCA\AppleSync\Settings\Personal</personal>
+		<personal-section>OCA\AppleSync\Settings\PersonalSection</personal-section>
+	</settings>
+</info>

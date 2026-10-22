@@ -1,0 +1,80 @@
+[
+  {
+    "protocol": "s2k",
+    "username": "alice@example.com",
+    "password": "correct horse battery staple",
+    "iterations": 20000,
+    "salt": "l/GD6pC5/ZeJEEaISdlOdw==",
+    "a": "/bT164TIY1yyT5o/p6+SUXSbxw6qCWML1MrG/29i2V7yZpHwwG0v02G/a8EilzOvv7MloR9peg3xB1zEkty1MxTvnWYsqm0+uPS9KikBDIlymK2acCMCetmwq9EEJB0oQ7Z/vAS9WDNDZ+QTAsuxTdsxg/LZFDPoe7L6FILxZm82ueUarj+rj6EknLLWqOWnLl+g1o171EaR+5L4z9OcTx2MZORCsFRvas+02yZof02MqR8VzL+uQfIjYCVOL276q8Sp+LANxckm+luA96rNbnMB6/Vq7a0Y8xMXOZWgobXfYWN9zoPTRrxopd/lqN2ZyUUX01R11EyyB1uX7ZcCjQ==",
+    "B": "L7y5He921yFuAzGApdvi7fOU0OaVDz+Nt3ZC0HvS0c5ty12WFBChn8nDK84umTiupJ3E6U9/k8BV55i0EhxhPK08OBlC6RWeq+KkUac9GhSW615CysN0bMwtKOLXrxsONLlz9vpMx91b0tku6eYRPfyuq+ipBK6qiZ6Wx7FMlBy3kqu9Efl9gKMBnYD5gfAg2/TrRD2NdHyAw/5Mha8q0Ew46Ee8/H+mEMjcmtrewDoC8C8JtNWioDWf/hU6eVV4Qp3tmFo0qfjkVeodFZS+x+T96rbaumudNuoxcCxn91AdJ/YRoO988k9umyuiypCDsp5SKzVMVe1CJJYZzeapYA==",
+    "derivedKey": "dCwKyeSlystH7GirOXYDyn43XV33z6DPbRxyXIKS5tg=",
+    "A": "IaIpX7uSMpx99b8aTf2qDjv5juv9lO3NRrSrOHY9ZcuzPDGh8+4qrfTzPxRlnriafqopIq5PsfzVtJOMc0Y5mW04GRBAOdWBEoC/ku8BGX1yqBfeedkpMQwnVQ5KdICfU2jpWjetzHhWXIpA8AxxBcQxEWRbKm5QiEl+rAybOvUa+vdGOxcWf8aWLB5ub3MVdf82xNsnWxEJQv7ulXhNYTd5zrvQ4minpIU9eDnz+wECgwK32ReCk1W7cFPXHImC3o0mPWDdFTpABouuYiVERyGfHaqmHS5EM1xIoZBUjJH+T97DEwfWflCSflQKw7Wnez/l5mstqm4UG32hFmwtmA==",
+    "M1": "eFOL7wQKcxUMUbb75Pd2jityrz6bwo/guThy6x9wYRk=",
+    "M2": "ya9ohGJ4pR5u8/wisQyyT9qrjEg8+i1SSgo90ZnO5AI="
+  },
+  {
+    "protocol": "s2k_fo",
+    "username": "alice@example.com",
+    "password": "correct horse battery staple",
+    "iterations": 20000,
+    "salt": "KNufFuqPgwEqCQ8qyhcr+w==",
+    "a": "TvQSDJefVYNH9TAceHi1WZZkhwtNlhZ6A3ijVvnJiKGTZFm6VyXE2fSNLmGPmPWidV4VDiu9zHmg0HH+uBH3iOJhyRZrxlO+O8FTYdbUE4eAjkEwv3VdvMEAM3MLXOE+Php+5t+3aFvOGbD0C73T86bBxTZKp3chYRCHxSa15MzQV7YZ+6SRZMRaDKYl5okQ1aMFthEo3FZTxEQw2FHoSYGZYIvXnKM9kRk97Wx4z3yPAsR5dvLjSodbHFkuFb2y4Sqtdi4Mk3CX76AR2AB3hJgUZX5e0sOGjMV62bdSMqt1boYAb7bblQZfsu4T2148b1oK6f4LaYFxOHwXST8MQA==",
+    "B": "ZIiyn9TOBY18ae6/omJbDu0yhyy6hFppgSe9RYDAf+YDtAhiUF5Xw/Y6xw157RP8LGf3kDils+1ZktqbAOr+hwRivlPPiHvvUpbP2bd3jkekNgYDqPOm/QnLNjrlZIZDOZY5EjrO0mMXcdth9t6ph4kJElyr6dXnrlNSueUs/k1hNZC1HeK3K4f3L6d6cqsO4JR4CbzaM59tEXVWK4NcP/htAwhzkjM6LGyMZpPKHvNwcOjEMpr6A8ZUiRF+IOx5THzemyqpjfR30DfLptxNaUw1xQ2FN+Mm4rdlUl90eb89oGDSBsInR2tnT95jtvvD3d+AXztlvGye2CWUuukw6A==",
+    "derivedKey": "kc/u782LPp0l3L/i3v1LIvOdgLJohgWaOdiJi+QqQis=",
+    "A": "AsniiNmr7tkpP9q/d93FT1KbbzLbvvsO/AvXPOIGTKi9/WZGviSbTNis+sFfAPyb3KISD/d2Np1nXgweW04Y1ECrdWPiAhRPaIyHCwxvX3dSsyBANNRAvRKfMoYbZQJmqo5d84AecdMiUWYLuUfpJP6yNsPvdKLtpyyR1JWxni6c5NBOtuR+SGjlsYUOeBoipEgRPdHzwfyh2CQXDAKp92E3TpN1yZN/0AljyGM+1puSkFAFK2Kc2ufmLxkSQn4+GQUsb2YnXrd9qQAHYANXnQJe45CVNWr7OFj3yhzB6RvgPreqMl+sXAB4NfGHnJPjO6vocqLtlCb3AXtwnDTZ/g==",
+    "M1": "QbD7Nh9TAD5i9nDpM2fjfqeyV7pWOH8D1aKy4j7qa6w=",
+    "M2": "gXloW7zEuqUrWS+hiNT7H+ODjhIcIWWsCvPdOgHDN9c="
+  },
+  {
+    "protocol": "s2k",
+    "username": "bob@icloud.com",
+    "password": "pässwörd-ünïcode-🍎",
+    "iterations": 1000,
+    "salt": "E2iFarBD0vVQHLHk50OHuw==",
+    "a": "Yb0Kq7dWzkWehpH5D4lJgzXsjjnNPtYXpy8a7eDhJ4FyJuAqzjvJLxnOelcEWXQiPODFsckbDhHG6c9FbIgvB0FnSeFyxb0ETu9ihKPopC8HXKnySiBEM0IyPi5l4jk4IW11jWbJ7Xw9cYUrj2iWoFQWqk1ijXbfErhspsUR+bT9ex2y9vvvl5YpbkYOWKod8LQ9RxJOAG3QmP2Gnr8ve6MkyDkOySOkminpfxS8kdq2Ya7G4zLosxgGp8oNfJWN4dE21JoTvtY9I5NcyAGrr82qLGZf2kin0OlvqNc8hYAciQTqA5tNUIbSs7o7Mx25Hm4M1GigNN+2Eo7U8y123g==",
+    "B": "mRxCsZQu/pzTGWK3HHSybRJIZUzX3XdP6X5spyHC+4EQJmg7/W3QTA9NBBEmhIqt47pnh2t8tWgJgmLapcO/+lIxz2dIevK4DUmbZKbIQ0PRjhLpQfaa6zgTfjnxS+U5Fu7O+Lrdblg7uY9KX0Z5cqEXSVIY2UkoB5frpzFOkFptde+6peRjp2/7v7SwSpZNv4GrUeiddd+OjwnW1CTrE7vhNST53OBkB8eycWNzWgTIMhgrTxA+9B0q8gVLBh0bAh9AAP7rm9cCB878oxGfqtgjXA/Pk1BAYTfAELsubkYqQN0uXn7OHVXLQeBDZLFv86C87wwI8RUsnRhfL9lhnQ==",
+    "derivedKey": "GX8/15DTRheRo8qaXOIKSAuqtUPNBW7qSRxLySBJFDE=",
+    "A": "ld09dGo1Lg27Ty3S25pc95ZAX/n2Gth6rypWx2frQd+fnRANvAp/KHOAiEojNv5Bzkx1W8vXEdu+0mLu19dIS0tA9YtYB+tc187ptBuj34zqQb85H35cP7nIBFIfuUTtSPQ6yVhL537PMAOvhF3Tp3nGAD6mBm3L4KhrAHRoXw6tbhJ7DpT/RI0zfM76b1aCaEszMG88v4pxfx/TwYRjqouyrvmQr9pQRjE93DyE264TWJCyNt8a3uJ/rYaQCkzKkPf5dy8SHLZxHP3XC7pyY/J6YzBwkD5IbD7vGNr09SXdo/BrjJy38MLGxX0yM8nn5Hy6DLlXrlYsvKfslFrhOw==",
+    "M1": "vKd/tVEQ+Rhck7YpN3kTJZbP1WsUnYaWYnNmCY/SRoo=",
+    "M2": "F4iQGRjUUtcOOvcvfnMfmQaI5/tidlCT468qoRzdOWA="
+  },
+  {
+    "protocol": "s2k_fo",
+    "username": "bob@icloud.com",
+    "password": "pässwörd-ünïcode-🍎",
+    "iterations": 1000,
+    "salt": "+5aS3XI6+j3/FdUIEzVpBw==",
+    "a": "6yXvmPrXqW2GwwLhVJX3fabPk4NqvN8c2t0CUIt5aU3KjF03E+HB8vwO4WGUUPUd0ZIozZ3OV8ZUCGCD3Ois3mE2LzdOmpX2hXFFYrFaZdfASuRxIzRNkRGHm7XrNxeTZ0ncLWCqjg/5d4OD5V9VoX6zSGRRGIH4L0KxV3C4oRCmPQwziLGR2XdOR9Lj8Glm6kguyLJlxaaolmVzDAf9KpnQR2IYK2gRHexAbRYUxXQ/hE2UaNf8rUcX1JE/LEKqiYO1sIYrDbG3or6VOT8PpTLeRZQH0X2DnwwVAjTcVxMJuQXO5x5vSIx8iqVqPStYkEVDe4vanjrMO5W0TPftjA==",
+    "B": "knimSJq7PO/hqLcrXxD8e41dwKvh4dkNgDs+72Ck1i5x9oW6Tea/fvDvDzqqDFvA5TM6bVb3gC6pTxOUIHPgNjNxjJNey3PBtGAD2LLH8hd8ne4WJwPeLGn+ZmwvcinoGJ87/fSjozwUVxAz1yYayO2T7OE16o1YbjajTn9YO32l34o+WJLp0+moRei5/aHgDKf1Cd8Y1vNEkEOdNKlSOeUJG6XpigwDSABxjQFPt76FPBXwrm03hXqwTu2b58GRAoZ2kSB/HdikEExUgilFtbwgXweTThnFdvdEWM8P2qA9Sw5aCAy9xWxPNDJXzT9TaH2YKKTG1aLt/XLpnTwNoQ==",
+    "derivedKey": "IwbNSj5fTQ0/mtMB7XR8lhzABDwPjCvkp//HlSNlhQk=",
+    "A": "V7oIOOO5jnvF4xYIU+fdD06yjG7I79IkemYtsJW0M6vd3Wxq/6QaMsITdl8JW9rMmIuJKCByNk7U2dJ1fdSEKk9rEwcL1kku8DAMQMmB0aXy7K6VF9aMJ8Z50L6dBUF0tg3ZVb0ENkYrvh5YgDupxgM+KkwMRg5xoQXqhrnJQssaVuJgHsQCrXJywDSMYksruvGMEOCmwAmZvcrKbzTEkH4T+XCY8T5ulu+akPOpbj46Lp0+jYodXvECwew+GKEnfAis/b3uMb413G5ifdVKMb3n7g7bhYzRq5p8UWKP57FS0jNuQOf9N15TzT7ZMu70dnmfsXLZTBW5wrri8BH/qQ==",
+    "M1": "O05e23wjuEctP5+WpH2BcHwyrXgB9zmdUoxvaSlVLdE=",
+    "M2": "gwQozmzJPXWCJ5P7SP1FOVeuPpYAENHUBebBJfN8Wmw="
+  },
+  {
+    "protocol": "s2k",
+    "username": "carol@me.com",
+    "password": "x",
+    "iterations": 1,
+    "salt": "GOWLU0b8gFl+vs659s1FTA==",
+    "a": "xjEkOI3J3kbHz0TsmjpO/W+vTWsSTClVsbFz/8YeUosUeoJtkXW85pmWjHMazP1VxmkhjDAckKkao2yI7jn7uEQaeyaypx7UEuWqByItHpOpJ56ciEyvgwPRsXUTGRBCwnbzLzIEu7EIEIYneY2bIzWjvI/xxb1fUMRfn0TsMATQ9L+NdYr+oHGo1oNdaroTdy32UQ7igIH/W1OEyq/q9wNs7M5Yrz6IZuZ6EZ5IMR1cNDCdhSweqekHng5tTPg9s9E4q1T4SPhY5tjvwwORB05344Jz4zu9wu+3/XNdLUiVEX0/C1LAsCw8SZ0a7osnrIA1y+XqXtPhsTX1+a9YKA==",
+    "B": "gt6SyPqrqwEGKGxlOn4g+wlVujG9lInwDFIfnO6HiA3fiJVKNHRMgA8NPvZKgYE866gp1J+3qeyeCuiiJINjoWjl0vYY+9lLac3vL1L8+gBUJcz1QlJjnwbO9H5mgUBCyMAjpQfOjCJLA8VtRSvl/GaAKMlbtAjsUDnonEewDNKZKz3sZVoOWiMIgdn0B0YT1hlLw/Aclz8bM1swl+OzZHU56c0/bXwV4T38FuRZz8JWfV+eybVeD+thlqLNs8jmJXhFqBQgLBm5VPZyvQgym7JCVjCS6tPKIiXcs/Pyjh7KN5hTAKeKzXbscAFT3XKnya7vi8xtaR+zkKjN8XRnWg==",
+    "derivedKey": "c9GJbjdYIpU41qy14d4PBIE4ahi+cLyMEpN/H63C5aA=",
+    "A": "dmHE7om7pil9BfX4GPrETYQyctxafW7Sgywv+GVGjAmN/+xTw3HhutyvIXuKew0LtuC51Znal8UuhGcuaRRM3fzYGwiFM/hUNw/j6qLVFI3pQi1UcIyqkbkynD4GGANKmPQtQdQ624+4ZFq7jBqizl5e2V41QSVglgFoqPcv2FLeVkZmoaNktwFiUogfVdEuHOoHubhmHZY6aEtocdju600AKmiR4Wir418OnjOx/B6CNh7M1cxYIgqyG5FQZvQUFAsE/NIXEqHQxSN1qXgUZwR8h/Mfn2XwnCXPe5LjaBBpP6qgU1pAGAnNkJcuq46BjCZqkDGuR3hlr4VoWXkR9g==",
+    "M1": "syzxfORARqUDkRQIgSLKE3EDKV4OOLxbFWX6+ahp5hE=",
+    "M2": "ufOhevAKGAOIxTDTQ8Aowxzitf31T7C8nFK8h9o93dA="
+  },
+  {
+    "protocol": "s2k_fo",
+    "username": "carol@me.com",
+    "password": "x",
+    "iterations": 1,
+    "salt": "+HBbVkmIlMu14ir/d7nISA==",
+    "a": "4v9cy1WlyZdtOH7y+XdeAHbH4t6JEz/MlL6p0jIgArO0/vxCxkDY24OZ5L7VB9vibyk484t6Gem8L0aLHEaQRBwNc5v4jxP6P9ripJqiDfRNgtstdyqO72WPV0atKR6InBAcVFM028qhSU2ah/4kxc/Lb1ksS8Wc1TFvrnQU6FyuJ0NiCqrvFvm+J47wg+UMq/7vaAUMPWxh73NIyUPg0fQNVVcArEUkxNw+SNC5PksuTX97vb/Zb3VAzAoWUcw9XU6a42EQpMSZYU4OGvTiKpgi41qUr4lTQxGVM43h4XbQC+3WYjqOy/qGxX2gVZWr72OOwyLSqFH/3elx7odNyA==",
+    "B": "KHq8Oca1AWi78Tn4bunzRG8/dyz9zhIhUXlOCEmzpbYUiWcaRhjaqOtTyIIJLWbJtkWEMK0pje+e0oq1y3TR7T3kASFX5XqxHTy2vKnLY7Hbb1oTqlhSdbuqFAxBPAMaxIVh7Hw+JZN6H2Eb7jpaOhacltKHNSrSKW9pnGYWYdSKeLcrtrLnBkxgLUct7h2XRR+8gtBK/Rz1EztucsBEfxoNxoxt3KzCd47gieuVYSe4DGOpLl9JtDprnc6JYyRb6pRsNtoIswvRJZUadEaDqt0tMFd6LtxCaWkHX9KDPttklzHbt5de46dfx4UUSgcrCpEWMPdQ+7AjM9xSPWh9Fg==",
+    "derivedKey": "c04FR62HOGPO1RKDBT49AEyh3r/GArIEGED5lhQH0IQ=",
+    "A": "J431v37m2Y8CKQ6Use5BJj7LTUxKbFiqJQ8UxuBpaLZ87hakMCf9JcBWi/GesbIURRRuhKD77GBVz6Xhi6cqy0zoyFOBW4v4AFm5FqA8g3YYJu+QZgKqRi583Y/3IjLQvqAJ1q6/ARFOQdV08/RvzBOZ59MXs0tiwF2aBxt1ZQA0f4sNAQsKPpG+PxsCVzCvnQf+TDeRD4824tk0hQV9XGXurYsf5mhMxJQF5UrZMSeM+A7jwm+OLi1RnpXhMNSjJkRqBiBx4/35xEvZjIn7ScJtbnPVbOmxluHanOmx3Z4u8FpsZkjhsCyqD/PrOs/kOR2OVAzJnNvfrQgIhf6qig==",
+    "M1": "WvzMMl/3CcPRzbtrkyNS5vRE1G1AYbE6BD9b13wOTeY=",
+    "M2": "avLP9aH+GbkUJq+ynt2X7RDS7VG2Osq2SuYW/c6X8ew="
+  }
+]
